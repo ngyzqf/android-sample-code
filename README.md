@@ -1,4 +1,4 @@
 Android Sample Code
 ===================
-A basic android sample code for study. 
+A basic android sample code. 
 
