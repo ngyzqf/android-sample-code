@@ -910,14 +910,14 @@ index d44f151412e1..5e01cac67375 100755
 +                }
 +
                  if(DEBUG) {
-                     Slog.d(TAG, "ZerbaHealthInfor Battery type:"+mGyniuHealthInfo.batteryType
+                     Slog.d(TAG, "GyniuHealthInfor Battery type:"+mGyniuHealthInfo.batteryType
                                  +" Capacity:"+mGyniuHealthInfo.batteryPresentCapacity);
 @@ -300,6 +311,9 @@ public final class BatteryService extends SystemService {
                                  +" Serial#"+mGyniuHealthInfo.batterySerialNumber);
-                     Slog.d(TAG, "ZerbaHealthInfor Low level:"+mHealthGyniu.getBatteryLowLevel()
+                     Slog.d(TAG, "GyniuHealthInfor Low level:"+mHealthGyniu.getBatteryLowLevel()
                                  +" Critical level:"+mHealthGyniu.getBatteryCriticalLevel());
 +                    if (mHealthGyniuV11 != null) {
-+                        Slog.d(TAG, "ZerbaHealthInfor connect health#:" + mGyniuHealthInfoV11.connectorHealth);
++                        Slog.d(TAG, "GyniuHealthInfor connect health#:" + mGyniuHealthInfoV11.connectorHealth);
 +                    }
                  }
              } catch (RemoteException e) {
