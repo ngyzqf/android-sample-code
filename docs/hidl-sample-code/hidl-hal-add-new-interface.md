@@ -592,7 +592,6 @@ void Health::getBattExtras()
     else
         zHealthInfo.v1_0.batteryBaseCumulativeCharge = zHealthInfo.v1_0.batteryRatedCapacity * zHealthInfo.v1_0.batteryUsageNumber;
 
-    // BSPA-142338: VC83 devices report a gifted battery, and provide most of
     // the extra fields expected, but not Time Since First Use. The UI will
     // hide data that is marked as invalid, so return EINVAL rather than -1.
     if (!zHealthConf.batterySecondsSinceFirstUsePath.isEmpty())
