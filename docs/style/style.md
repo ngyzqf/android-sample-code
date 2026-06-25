@@ -20,6 +20,7 @@ sudo apt update
 sudo apt install gcc make  git  bc libssl-dev liblz4-tool device-tree-compiler bison flex u-boot-tools gcc-aarch64-linux-gnu
 ```
 
+
 ## 1.2. 获取内核源码
 
 确认板卡使用的内核版本，可以在板卡使用命令 uname -a 查看。
