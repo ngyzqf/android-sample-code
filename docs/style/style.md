@@ -2,29 +2,30 @@ style test
 ===================
 style test sample code. 
 
-1.
-<div class="highlight-sh notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">#这里以rk356x系列4.19.232内核配置文件为例</span>
-make <span class="nv">ARCH</span><span class="o">=</span>arm64 <span class="nv">CROSS_COMPILE</span><span class="o">=</span>aarch64-linux-gnu- lubancat2_defconfig
-make <span class="nv">ARCH</span><span class="o">=</span>arm64 -j4 <span class="nv">CROSS_COMPILE</span><span class="o">=</span>aarch64-linux-gnu- dtbs
-</pre></div>
-</td></tr></table></div>
+1\. 驱动开发环境
+===================
+本章的主要目的是搭建驱动章节所需的实验环境，后续章节将不在实验环境搭建上耗费太多的版面， 而是主要讲解设备驱动的原理。本小节内容涉及的知识点较多，需要有一定的内核基础才可理解相关内容，若不理解部分知识点，跳过即可，可等到接触到相关知识再回头学习。
 
-2.
-```java
-aidl_interface {
-    name: "com.ftd.gyn",
-    vendor_available: true,
-    srcs: [":gyn_aidl"],
-    stability: "vintf",
-    backend: {
-        java: {
-            platform_apis: true,
-        },
-        cpp: {
-            enabled: false,
-        },
-    },
-    versions: ["1"],
-}
+首先我们要明白程序最终是运行在板卡上，可以在板卡上编译或者在pc上使用交叉编译器进行编译， 需要下载内核源码或对应内核的头文件(Kernel Headers)，之后编译源码、编译驱动模块以及设备树等，最终将驱动模块和设备树拷贝到开发板上运行。
+
+另外，驱动模块是具有独立功能的程序，它可以被单独编译，但不能独立运行， 在运行时它被链接到内核作为内核的一部分在内核空间运行。因此我们写的内核模块想要在某个版本的内核上运行，那么就必须在该内核版本上编译它。
+
+[!TIP]
+本章节不需要烧录我们编译的内核，编译内核可以在板卡上或者个人PC上，编译内核是为了辅助编译驱动程序。 另外，也可以编译出内核头文件deb包，安装后同样可以编译驱动模块。如果有更新替换内核的需求请参考 镜像构建与部署的构建内核deb包 章节。
+
+1.1. 搭建编译环境
+=================
+编译内核可以在pc虚拟机上进行交叉编译也在板卡上进行本地编译。由于pc虚拟机性能远远强于板卡，一般建议在虚拟机上编译，如果不想用虚拟机，希望直接在板卡上开发，不介意编译时间过长也可以在板卡上编译。
+
+在PC上，可以使用VirtualBox或者VMWare，搭建ubuntu虚拟机，建议使用Ubuntu18.04或者ubuntu20.04版本， 详细搭建请参考 LubanCat-RK系列板卡应用开发手册 系列章节， 建议使用配套的虚拟机镜像。
+
+安装相关库和工具搭建编译环境，执行以下命令：
+```bash
+sudo apt update
+sudo apt install gcc make  git  bc libssl-dev liblz4-tool device-tree-compiler bison flex u-boot-tools gcc-aarch64-linux-gnu
+```
+
+1.2. 获取内核源码
+=================
+确认板卡使用的内核版本，可以在板卡使用命令 uname -a 查看。
+
