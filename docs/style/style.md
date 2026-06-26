@@ -1,71 +1,148 @@
 # 1. 驱动开发环境
-本章的主要目的是搭建驱动章节所需的实验环境，后续章节将不在实验环境搭建上耗费太多的版面， 而是主要讲解设备驱动的原理。本小节内容涉及的知识点较多，需要有一定的内核基础才可理解相关内容，若不理解部分知识点，跳过即可，可等到接触到相关知识再回头学习。
 
-首先我们要明白程序最终是运行在板卡上，可以在板卡上编译或者在pc上使用交叉编译器进行编译， 需要下载内核源码或对应内核的头文件(Kernel Headers)，之后编译源码、编译驱动模块以及设备树等，最终将驱动模块和设备树拷贝到开发板上运行。
+这个是sample, 这个是sample, 这个是sample, 这个是sample, 这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample.
 
-另外，驱动模块是具有独立功能的程序，它可以被单独编译，但不能独立运行， 在运行时它被链接到内核作为内核的一部分在内核空间运行。因此我们写的内核模块想要在某个版本的内核上运行，那么就必须在该内核版本上编译它。
+这个是sample, 这个是sample, 这个是sample, 这个是sample, 这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample
 
-!!! TIP
+这个是sample, 这个是sample, 这个是sample, 这个是sample, 这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample
 
-    本章节不需要烧录我们编译的内核，编译内核可以在板卡上或者个人PC上，编译内核是为了辅助编译驱动程序。 另外，也可以编译出内核头文件deb包，安装后同样可以编译驱动模块。如果有更新替换内核的需求请参考 镜像构建与部署的构建内核deb包 章节。
+!!! tip
+
+    这个是sample, 这个是sample, 这个是sample, 这个是sample, 这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample.
 
 ## 1.1. 搭建编译环境
-编译内核可以在pc虚拟机上进行交叉编译也在板卡上进行本地编译。由于pc虚拟机性能远远强于板卡，一般建议在虚拟机上编译，如果不想用虚拟机，希望直接在板卡上开发，不介意编译时间过长也可以在板卡上编译。
 
-在PC上，可以使用VirtualBox或者VMWare，搭建ubuntu虚拟机，建议使用Ubuntu18.04或者ubuntu20.04版本， 详细搭建请参考 LubanCat-RK系列板卡应用开发手册 系列章节， 建议使用配套的虚拟机镜像。
+这个是sample, 这个是sample, 这个是sample, 这个是sample, 这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample.
 
-安装相关库和工具搭建编译环境，执行以下命令：
+这个是sample, 这个是sample, 这个是sample, 这个是sample, 这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample.
+
+这个是sample, 这个是sample, 这个是sample：
 ```bash
-sudo apt update
-sudo apt install gcc make  git  bc libssl-dev liblz4-tool device-tree-compiler bison flex u-boot-tools gcc-aarch64-linux-gnu
+sudo ls -l 
+sudo cat /proc/cpuinfo 
 ```
 
+## 1.2. 获取内核Source Code
 
-## 1.2. 获取内核源码
-
-确认板卡使用的内核版本，可以在板卡使用命令 uname -a 查看。
+这个是sample, 这个是sample, 这个是sample, 这个是sample.
 
 ```bash
-#查看板卡内核版本
+#这个是sample, 这个是sample
 uname -a
 
-#如RK3588的5.10.160内核镜像信息输出如下
-Linux lubancat 5.10.160 #16 SMP Tue Jan 13 13:59:50 CST 2026 aarch64 GNU/Linux
+#这个是sample, 这个是sample,这个是sample, 这个是sample
+这个是sample, 这个是sample, 这个是sample, 这个是sample, 这个是sample, 这个是sample
 ```
 
-获取内核源码，建议直接git克隆野火官方提供的内核源码，或者下载Lubancat-SDK源码，SDK源码中包含内核源码。
+这个是sample, 这个是sample, 这个是sample, 这个是sample, 这个是sample, 这个是sample
 
-### 1.2.1. 直接克隆野火官方提供的内核源码
-RK3528系列板卡用户执行以下命令获取内核源码：
+### 1.2.1. 这个是sample, 这个是sample, 这个是sample
+
+这个是sample, 这个是sample, 这个是sample:
 
 ```bash
-#-b参数指定lbc-develop-5.10分支
-git clone -b lbc-develop-5.10 https://github.com/LubanCat/kernel.git
+#这个是sample, 这个是sample
+这个是sample, 这个是sample,这个是sample, 这个是sample, 这个是sample, 这个是sample
 ```
 
-### 1.2.2. 通过SDK获取内核源码
-访问百度网盘资源介绍页面获取SDK源码压缩包：资料网盘/8-SDK源码压缩包/LubanCat_Linux_SDK，查看目录下的“源码压缩包选择说明.txt”下载对应的SDK源码压缩包。
+### 1.2.2. 这个是sample, 这个是sample
 
-!!! 重要
+这个是sample, 这个是sample, 这个是sample, 这个是sample, 这个是sample, 这个是sample, 这个是sample, 这个是sample, 这个是sample, 这个是sample, 这个是sample.
 
-    由于源码压缩包体积很大，仅在有大量修改的稳定版本时更新，其发布日期可能和镜像发布日期无法对应。
+!!! important
+
+    这个是sample, 这个是sample,这个是sample, 这个是sample,这个是sample, 这个是sample.
 
 
-以下过程以LubanCat_RK356x_Linux_SDK进行演示，对应4.19.232内核版本，实际文件名称以自己下载的SDK为准。
+这个是sample, 这个是sample,这个是sample, 这个是sample,这个是sample, 这个是sample, 这个是sample.
 
-## 1.3. 编译内核
-### 1.3.1. 在PC上交叉编译内核(建议)
+## 1.3. 这个是sample
+### 1.3.1. 这个是sample, 这个是sample
 
-按照前面小节搭建编译环境并下载源码之后，进入内核源码根目录，根据具体的板卡设置配置文件。
+这个是sample, 这个是sample,这个是sample, 这个是sample,这个是sample, 这个是sample, 这个是sample.
 
-RK3528系列板卡用户执行以下命令编译内核源码：
+这个是sample, 这个是sample,这个是sample:
 ```bash
-#清除之前生成的所有文件和配置
-make mrproper
+#这个是sample, 这个是sample
+source build/env.sh
 
-# 加载lubancat_linux_rk3528_defconfig配置文件，rk3528系列均是该配置文件
-make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- lubancat_linux_rk3528_defconfig
+# 这个是sample,这个是sample, 这个是sample, 这个是sample, 这个是sample, 这个是sample
+lunch usedebug
 
-# 编译内核，指定平台，指定交叉编译工具，使用8线程进行编译，线程可根据电脑性能自行确定
-make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- -j8
+# 这个是sample,这个是sample, 这个是sample, 这个是sample, 这个是sample, 这个是sample
+make -j8
 ```
+
+### 1.3.2. 这个是sample, 这个是sample
+
+这个是sample, 这个是sample,这个是sample, 这个是sample,这个是sample, 这个是sample, 这个是sample.
+
+这个是sample, 这个是sample, 这个是sample, 这个是sample, 这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample.
+
+这个是sample, 这个是sample, 这个是sample, 这个是sample, 这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample.
+
+这个是sample, 这个是sample, 这个是sample：
+```bash
+sudo ls -l 
+sudo cat /proc/cpuinfo 
+```
+
+这个是sample, 这个是sample, 这个是sample, 这个是sample, 这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample.
+
+!!! warning
+
+    这个是sample, 这个是sample,这个是sample, 这个是sample,这个是sample, 这个是sample.
+
+### 1.3.3. 这个是sample, 这个是sample
+
+这个是sample, 这个是sample,这个是sample, 这个是sample,这个是sample, 这个是sample, 这个是sample.
+
+这个是sample, 这个是sample, 这个是sample, 这个是sample, 这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample.
+
+这个是sample, 这个是sample, 这个是sample, 这个是sample, 这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample.
+
+这个是sample, 这个是sample, 这个是sample：
+```bash
+sudo ls -l 
+sudo cat /proc/cpuinfo 
+```
+
+这个是sample, 这个是sample, 这个是sample, 这个是sample, 这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample,这个是sample.
+
+!!! danger
+
+    这个是sample, 这个是sample,这个是sample, 这个是sample,这个是sample, 这个是sample.
+
+
+## 1.4. 获取内核Source Code
+### 1.4.1. 这个是sample, 这个是sample, 这个是sample
+
+这个是sample, 这个是sample, 这个是sample, 这个是sample.
+
+```bash
+#这个是sample, 这个是sample
+uname -a
+
+#这个是sample, 这个是sample,这个是sample, 这个是sample
+这个是sample, 这个是sample, 这个是sample, 这个是sample, 这个是sample, 这个是sample
+```
+
+这个是sample, 这个是sample, 这个是sample, 这个是sample, 这个是sample, 这个是sample
+
+### 1.4.2. 这个是sample, 这个是sample, 这个是sample
+
+这个是sample, 这个是sample, 这个是sample:
+
+```bash
+#这个是sample, 这个是sample
+这个是sample, 这个是sample,这个是sample, 这个是sample, 这个是sample, 这个是sample
+```
+
+### 1.4.3. 这个是sample, 这个是sample
+
+这个是sample, 这个是sample, 这个是sample, 这个是sample, 这个是sample, 这个是sample, 这个是sample, 这个是sample, 这个是sample, 这个是sample, 这个是sample.
+
+!!! note
+
+    这个是sample, 这个是sample,这个是sample, 这个是sample,这个是sample, 这个是sample.
+
